@@ -26,14 +26,14 @@ With PHNX, you can harness the power and extensive libraries of Python while wor
 
 ## Getting Started (Example - Needs Expansion)
 
-void test(age,name){
-    btw we check if the user is a minor or an adult here
-    if age<18 {
+```phnx
+void test(age, name) {
+    // btw we check if the user is a minor or an adult here
+    if age < 18 {
         console('you are still a child _+name+_');
-    }else{
+    } else {
         console(f'Aight you are an adult _+name+_');
     }
 }
 
-
-test(18,'ukdzzz');
+test(18, 'ukdzzz');
