@@ -1,0 +1,14 @@
+btw this is the start of the code
+
+void test(age,name){
+    btw we check if the user is a minor or an adult here
+    if age<18 {
+        console('you are still a child _+name+_');
+    }else{
+        console(f'Aight you are an adult _+name+_');
+    }
+}
+
+btw we call the function here
+
+test(18,'ukdzzz');

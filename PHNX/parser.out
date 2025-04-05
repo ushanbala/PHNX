@@ -1,0 +1,124 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> VARIABLE ASSIGN expression SEMICOLON
+Rule 2     statement -> VARIABLE LPAREN expression RPAREN SEMICOLON
+Rule 3     expression -> VARIABLE
+Rule 4     expression -> STRING
+
+Terminals, with rules where they appear
+
+ASSIGN               : 1
+LPAREN               : 2
+RPAREN               : 2
+SEMICOLON            : 1 2
+STRING               : 4
+VARIABLE             : 1 2 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 1 2
+statement            : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . VARIABLE ASSIGN expression SEMICOLON
+    (2) statement -> . VARIABLE LPAREN expression RPAREN SEMICOLON
+
+    VARIABLE        shift and go to state 2
+
+    statement                      shift and go to state 1
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> VARIABLE . ASSIGN expression SEMICOLON
+    (2) statement -> VARIABLE . LPAREN expression RPAREN SEMICOLON
+
+    ASSIGN          shift and go to state 3
+    LPAREN          shift and go to state 4
+
+
+state 3
+
+    (1) statement -> VARIABLE ASSIGN . expression SEMICOLON
+    (3) expression -> . VARIABLE
+    (4) expression -> . STRING
+
+    VARIABLE        shift and go to state 5
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 6
+
+state 4
+
+    (2) statement -> VARIABLE LPAREN . expression RPAREN SEMICOLON
+    (3) expression -> . VARIABLE
+    (4) expression -> . STRING
+
+    VARIABLE        shift and go to state 5
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 8
+
+state 5
+
+    (3) expression -> VARIABLE .
+
+    SEMICOLON       reduce using rule 3 (expression -> VARIABLE .)
+    RPAREN          reduce using rule 3 (expression -> VARIABLE .)
+
+
+state 6
+
+    (1) statement -> VARIABLE ASSIGN expression . SEMICOLON
+
+    SEMICOLON       shift and go to state 9
+
+
+state 7
+
+    (4) expression -> STRING .
+
+    SEMICOLON       reduce using rule 4 (expression -> STRING .)
+    RPAREN          reduce using rule 4 (expression -> STRING .)
+
+
+state 8
+
+    (2) statement -> VARIABLE LPAREN expression . RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 10
+
+
+state 9
+
+    (1) statement -> VARIABLE ASSIGN expression SEMICOLON .
+
+    $end            reduce using rule 1 (statement -> VARIABLE ASSIGN expression SEMICOLON .)
+
+
+state 10
+
+    (2) statement -> VARIABLE LPAREN expression RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 11
+
+
+state 11
+
+    (2) statement -> VARIABLE LPAREN expression RPAREN SEMICOLON .
+
+    $end            reduce using rule 2 (statement -> VARIABLE LPAREN expression RPAREN SEMICOLON .)
+
